@@ -1,0 +1,105 @@
+title: Article
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: title
+        field:
+          type: text
+          required: true
+          display: Title
+          validate:
+            - required
+      -
+        handle: content
+        field:
+          type: markdown
+          display: Content
+          restrict: false
+          automatic_line_breaks: true
+          automatic_links: false
+          escape_markup: false
+          smartypants: false
+      -
+        handle: excerpt
+        field:
+          type: textarea
+          display: Excerpt
+          character_limit: 160
+      -
+        handle: author
+        field:
+          type: users
+          display: Author
+          default: current
+      -
+        handle: replicator_field
+        field:
+          collapse: false
+          sets:
+            new_set:
+              display: 'New Set'
+              fields:
+                -
+                  handle: link
+                  field:
+                    display: Link
+                    type: link
+                    icon: link
+                    listable: hidden
+                    instructions_position: above
+                    read_only: false
+                -
+                  handle: text_field
+                  field:
+                    input_type: text
+                    antlers: false
+                    display: 'Text Field'
+                    type: text
+                    icon: text
+                    listable: hidden
+                    instructions_position: above
+                    read_only: false
+          display: 'Replicator Field'
+          type: replicator
+          icon: replicator
+          listable: hidden
+          instructions_position: above
+          read_only: false
+      -
+        handle: taxonomy
+        field:
+          mode: default
+          create: true
+          taxonomies:
+            - topics
+          display: Taxonomy
+          type: terms
+          icon: taxonomy
+          listable: hidden
+          instructions_position: above
+          read_only: false
+  sidebar:
+    display: Sidebar
+    fields:
+      -
+        handle: slug
+        field:
+          type: slug
+          localizable: true
+      -
+        handle: date
+        field:
+          type: date
+          required: true
+          validate:
+            - required
+      -
+        handle: topics
+        field:
+          type: terms
+          taxonomies:
+            - topics
+          display: Topics
+          mode: select
